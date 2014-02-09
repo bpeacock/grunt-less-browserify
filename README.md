@@ -49,6 +49,12 @@ module.exports = function(grunt) {
 };
 ```
 
+## Options
+
+ - *imports*: A list of files that should be imported before compiling every less file.  This is very useful for less helper libraries.
+ - *output*: An output file for the concatenated stylesheet.
+ - *jsAppend*: Whether or not to add the stylesheets using javascript in the browserify output. (default true)
+
 ## How it works
 
 The stylesheets are compiled (in the case of LESS), minified, and bundle into a function that creates a new `<style>` element and appends it to the `<head>` using [native Javascript](http://stackoverflow.com/questions/524696/how-to-create-a-style-tag-with-javascript).
