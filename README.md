@@ -1,4 +1,4 @@
-grunt-less-browserify [![Build Status](https://travis-ci.org/wilson428/node-lessify.png)](https://travis-ci.org/wilson428/node-lessify)
+grunt-less-browserify
 ============
 Version 0.0.1
 
