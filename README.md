@@ -1,8 +1,8 @@
-node-lessify [![Build Status](https://travis-ci.org/wilson428/node-lessify.png)](https://travis-ci.org/wilson428/node-lessify)
+grunt-less-browserify [![Build Status](https://travis-ci.org/wilson428/node-lessify.png)](https://travis-ci.org/wilson428/node-lessify)
 ============
-Version 0.0.3
+Version 0.0.1
 
-LESS precompiler and CSS plugin for Browserify v2. Inspired by [node-underscorify](https://github.com/maxparm/node-underscorify).
+LESS precompiler and CSS plugin for [grunt-browserify](https://github.com/jmreidy/grunt-browserify). Forked from [node-underscorify](https://github.com/maxparm/node-underscorify).
 
 When bundling an app using [Browserify](http://browserify.org/), it's often convenient to be able to include your CSS as a script that appends the style declarations to the head. This is particularly relevant for self-assembling apps that attach themselves to a page but otherwise have reserved real-estate on the DOM.
 
@@ -11,7 +11,7 @@ This small script allows you to `require()` your CSS or LESS files as you would 
 ## Installation
 
 ```
-npm install node-lessify
+npm install grunt-less-browserify
 ```
 
 ## Usage
