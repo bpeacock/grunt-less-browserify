@@ -1,10 +1,27 @@
-var less = require('less');
-var CleanCSS = require('clean-css');
-var through = require('through');
-var path = require("path");
+var less		= require('less'),
+	CleanCSS	= require('clean-css'),
+	through		= require('through'),
+	path		= require("path"),
+	grunt		= require('grunt');
 
-var func_start = "(function() { var head = document.getElementsByTagName('head')[0]; style = document.createElement('style'); style.type = 'text/css';";
-var func_end = "if (style.styleSheet){ style.styleSheet.cssText = css; } else { style.appendChild(document.createTextNode(css)); } head.appendChild(style);}())"; 
+require('../../Gruntfile.js')(grunt);
+var settings = grunt.config.data.lessBrowserify;
+
+//Global Imports
+var imports = '';
+if(settings.imports) {
+	for(var i=0; i<settings.imports.length; i++) {
+		imports += grunt.file.read(settings.imports[i]);
+	}
+}
+
+//Write The Output File
+if(settings.output) {
+	grunt.file.write(settings.output, '');
+}
+
+var func_start = "(function() { var head = document.getElementsByTagName('head')[0]; style = document.createElement('style'); style.type = 'text/css';",
+	func_end = "if (style.styleSheet){ style.styleSheet.cssText = css; } else { style.appendChild(document.createTextNode(css)); } head.appendChild(style);}())";
 
 module.exports = function(file) {
 	if (!/\.css|\.less/.test(file)) {
@@ -19,13 +36,13 @@ module.exports = function(file) {
 	});
 
 	return through(function(chunk) {
-    	return buffer += chunk.toString();
-  	}, function() {
+		return buffer += chunk.toString();
+	}, function() {
 
-  		var compiled;
+		var compiled;
 
-  		// CSS is LESS so no need to check extension
-		parser.parse(buffer, function(e, r) { 
+		// CSS is LESS so no need to check extension
+		parser.parse(imports + buffer, function(e, r) {
 			compiled = r.toCSS();
 		});
 
@@ -33,11 +50,18 @@ module.exports = function(file) {
 		// http://stackoverflow.com/questions/5989315/regex-for-match-replacing-javascript-comments-both-multiline-and-inline
 		compiled = compiled.replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, "");
 
-		var compiled = CleanCSS().minify(compiled);
+		compiled = CleanCSS().minify(compiled);
 
-		compiled = func_start + "var css = \"" + compiled.replace(/'/g, "\\'").replace(/"/g, '\\"') + "\";" + func_end;
+		//Write File
+		if(settings.output) {
+			grunt.file.write(settings.output, grunt.file.read(settings.output) + compiled);
+		}
 
-		this.queue(compiled);
+		//Add to JS
+		if(settings.jsAppend !== false) {
+			this.queue(func_start + "var css = \"" + compiled.replace(/'/g, "\\'").replace(/"/g, '\\"') + "\";" + func_end);
+		}
+
 		return this.queue(null);
 	});
 };
