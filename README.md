@@ -36,7 +36,7 @@ module.exports = function(grunt) {
           'build.js': ['main.js']
         },
         options: {
-            transform: ['node-lessify'],
+            transform: ['grunt-less-browserify'],
         }
       }
     },
