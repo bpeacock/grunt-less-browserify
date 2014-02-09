@@ -4,8 +4,12 @@ var less		= require('less'),
 	path		= require("path"),
 	grunt		= require('grunt');
 
-require('../../Gruntfile.js')(grunt);
-var settings = grunt.config.data.lessBrowserify;
+try {
+	require('../../Gruntfile.js')(grunt);
+}
+catch(err) {}
+
+var settings = grunt.config.data.lessBrowserify || {};
 
 //Global Imports
 var imports = '';
