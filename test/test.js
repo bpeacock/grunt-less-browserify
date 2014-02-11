@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-var fs = require("fs");
-var browserify = require('browserify');
-var lessify = require("../index");
-var assert = require("assert");
-
-var sampleLESS = __dirname + "/styles.less";
-var sampleCSS = __dirname + "/styles.css";
+var fs 		= require("fs"),
+    browserify 	= require('browserify'),
+    lessify 	= require("../index"),
+    assert 	= require("assert"),
+    sampleLESS 	= __dirname + "/styles.less",
+    sampleCSS 	= __dirname + "/styles.css";
 
 var b = browserify();
 b.add(sampleLESS);
