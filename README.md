@@ -1,5 +1,5 @@
-grunt-less-browserify
-============
+grunt-less-browserify [![Build Status](https://api.travis-ci.org/bpeacock/grunt-less-browserify.png?branch=master)](https://travis-ci.org/bpeacock/grunt-less-browserify)
+=====================
 Version 0.0.1
 
 LESS precompiler and CSS plugin for [grunt-browserify](https://github.com/jmreidy/grunt-browserify). Forked from [node-lessify](https://github.com/wilson428/node-lessify).
