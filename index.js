@@ -46,8 +46,14 @@ module.exports = function(file) {
 		var compiled;
 
 		// CSS is LESS so no need to check extension
+
 		parser.parse(imports + buffer, function(e, r) {
-			compiled = r.toCSS();
+			if(e) {
+				throw e.type + ' Error: ' + e.message;
+			}
+			else {
+				compiled = r.toCSS();
+			}
 		});
 
 		// rv comments
