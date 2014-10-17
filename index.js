@@ -60,7 +60,9 @@ module.exports = function(file) {
 		// http://stackoverflow.com/questions/5989315/regex-for-match-replacing-javascript-comments-both-multiline-and-inline
 		compiled = compiled.replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, "");
 
-		compiled = CleanCSS().minify(compiled);
+		if(settings.minify !== false) {
+			compiled = CleanCSS().minify(compiled);	
+		}
 
 		//Write File
 		if(settings.output) {
