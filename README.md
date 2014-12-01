@@ -54,6 +54,7 @@ module.exports = function(grunt) {
  - `imports`: A list of files that should be imported before compiling every less file.  This is very useful for less helper libraries.
  - `output`: An output file for the concatenated stylesheet.
  - `jsAppend`: Whether or not to add the stylesheets using javascript in the browserify output. (default true)
+ - `minify`: Whether or not to minify the CSS output. Defaults to true unless specified false.
 
 ## How it works
 
