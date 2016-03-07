@@ -21,8 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "grunt": "0.4.x",
-    "through": ">= 2.2.7",
-    "less": "<2.0.0",
+    "through": "2.3.x",
+    "less": "1.7.x",
     "clean-css": "2.0.2",
     "path": "*"
   },
